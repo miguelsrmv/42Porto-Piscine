@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printn_combn.c                                  :+:      :+:    :+:   */
+/*   ft_print_combn.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:12:14 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/09 19:43:14 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:09:47 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
-
-void	ft_print_combn(int n);
-void	ft_start_end_number(int n, int a[], int b[]);
-void	writedigit(int n);
-void	writenumber(int n, int number[]);
-void	iteratenumber(int n, int a[]);
 
 void	ft_print_combn(int n)
 {

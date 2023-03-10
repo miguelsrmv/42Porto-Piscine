@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:59:24 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/10 09:10:57 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:32:51 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,22 @@ void	writedigit(int n)
 	write(1, &c, 1);
 }
 
-int	poweroften(int e)
+void	createaandprintarray(int n, int m)
 {
-	if (e == 0)
+	int	array[10];
+	int	arrayiterate;
+
+	arrayiterate = 0;
+	while (arrayiterate < n + 1)
 	{
-		return (1);
+		array[arrayiterate] = m % 10;
+		arrayiterate++;
+		m = m / 10;
 	}
-	else
+	while (n >= 0)
 	{
-		return (10 * poweroften(e - 1));
+		writedigit(array[n]);
+		n--;
 	}
 }
 
@@ -39,15 +46,21 @@ void	ft_putnbr(int nb)
 
 	cb = nb;
 	counter = 0;
-	while (cb > 10)
+	if (nb < 0)
+	{
+		write(1, "-", 1);
+		ft_putnbr(-nb);
+		return ;
+	}
+	if (nb < 10)
+	{
+		writedigit(nb);
+		return ;
+	}
+	while (cb >= 10)
 	{
 		cb = cb / 10;
 		counter = counter + 1;
 	}
-	writedigit(cb);
-	if (counter > 0)
-	{
-		nb = nb - cb * poweroften(counter);
-		ft_putnbr(nb);
-	}
+	createaandprintarray(counter, nb);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_alphabet.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 10:58:00 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/09 11:41:07 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:08:59 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_alphabet(void)
 	char	c;
 
 	c = 'a';
-	while (c < 'z')
+	while (c <= 'z')
 	{
 		write(1, &c, 1);
 		c = c + 1;
