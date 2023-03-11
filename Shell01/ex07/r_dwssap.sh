@@ -1,1 +1,1 @@
-cat /etc/passwd | sed 's/:.*//' | sed '1~2d' | rev | sort -r | sed -z 's/\n/,/g;s/,$/\n/' | sed -ne 's/$/. &/pcat /etc/passwd | sed 's/:.*//' | sed '1~2d' | rev | sort -r | tail -n +$FT_LINE1 | head -n $(($FT_LINE2+1-$FT_LINE1)) | sed -z 's/\n/,/g;s/,$/\n/' | sed -ne 's/$/. &/p'
+cat /etc/passwd | sed '/^#/d' | sed -n 'n;p' | cut -d ':' -f 1 | rev | sort -r | sed -n "$FT_LINE1,$FT_LINE2 p" | tr '\n' ' ' | sed 's/ /, /g' | sed 's/, $/./' | tr -d '\n'

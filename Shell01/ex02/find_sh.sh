@@ -1,1 +1,1 @@
-find * -type f -name '*.sh'| rev | cut -c 4- | rev  
+find . -type f -name "*.sh" | sed 's/\.sh$//' | xargs -n 1 basename
