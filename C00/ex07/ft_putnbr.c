@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:59:24 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/10 12:32:51 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/11 19:56:17 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	writedigit(int n)
 
 void	createaandprintarray(int n, int m)
 {
-	int	array[10];
+	int	array[15];
 	int	arrayiterate;
 
 	arrayiterate = 0;
@@ -39,28 +39,37 @@ void	createaandprintarray(int n, int m)
 	}
 }
 
+void	invert(int *n)
+{
+	*n *= -1;
+	write(1, "-", 1);
+}
+
 void	ft_putnbr(int nb)
 {
 	int	cb;
 	int	counter;
 
-	cb = nb;
-	counter = 0;
-	if (nb < 0)
+	if (nb == -2147483648)
 	{
 		write(1, "-", 1);
-		ft_putnbr(-nb);
+		createaandprintarray(8, 214748364);
+		writedigit(8);
 		return ;
 	}
-	if (nb < 10)
+	if (nb < 0)
+		invert(&nb);
+	cb = nb;
+	if (cb < 10)
 	{
-		writedigit(nb);
+		writedigit(cb);
 		return ;
 	}
+	counter = 0;
 	while (cb >= 10)
 	{
 		cb = cb / 10;
-		counter = counter + 1;
+		counter++;
 	}
 	createaandprintarray(counter, nb);
 }
