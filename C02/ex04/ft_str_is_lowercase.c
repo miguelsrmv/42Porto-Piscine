@@ -6,23 +6,22 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:39:58 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/13 14:42:40 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:22:29 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int    ft_str_is_lowercase   (char *str)
+int	ft_str_is_lowercase(char *str)
 {
-    int i;
+	int	i;
 
-    if (str == "")
-        return (1);
-
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] < 'a' || str[i] > 'z')
-            return (0);
-        i++;
-    }
-    return (1);
+	if (str == "")
+		return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < 'a' || str[i] > 'z')
+			return (0);
+		i++;
+	}
+	return (1);
 }

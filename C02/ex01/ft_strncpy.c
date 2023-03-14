@@ -6,20 +6,24 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:11:52 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/13 11:24:54 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:19:43 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char    *ft_strncpy   (char *dest, char *src, unsigned int n)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-    int i;
-    i = 0;
+	unsigned int	i;
 
-    while ((i < n) && (src[i] != "\0"))
-    {
-        dest[i] = src[i];
-        i++;
-    }
-    
-    dest[n] = '\0';
+	i = 0;
+	while (src[i] != '\0' && i < n)
+	{
+		dest[i] = src[i];
+		++i;
+	}
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
 }

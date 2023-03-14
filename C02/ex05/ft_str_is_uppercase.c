@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str_is_uppercase.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:42:20 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/13 17:01:27 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:16:37 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int    ft_str_is_uppercase   (char *str)
+int	ft_str_is_uppercase(char *str)
 {
-    int i;
+	int	i;
 
-    if (str == "")
-        return (1);
-
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] < 'A' || str[i] > 'Z')
-            return (0);
-        i++;
-    }
-    return (1);
+	if (str == "")
+		return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < 'A' || str[i] > 'Z')
+			return (0);
+		i++;
+	}
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:11:31 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/14 15:17:40 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:10:52 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,15 @@ void	ft_putstr_non_printable(char *str)
 	}
 }
 
-int main (void)
+#include <unistd.h>
+
+void	ft_putstr_non_printable(char *str);
+
+int	main(void)
 {
-    char a[] = "Ola\nesta bem?";
-    char b[] = "\n";
-    ft_putstr_non_printable(a);
-}gcc 
+	char str[] = {'0', '1', 2, 30, 16, '4', 'a', 19, 'C'};
+
+	ft_putstr_non_printable(str);
+	write(1, "\n", 1);
+	return (0);
+}
