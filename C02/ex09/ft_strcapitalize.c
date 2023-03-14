@@ -6,14 +6,14 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 19:04:34 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/13 19:31:27 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:53:26 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strcapitalize(char *str)
 {
-	int i;
-	int wordbegin;
+	int	i;
+	int	wordbegin;
 
 	i = 0;
 	wordbegin = 1;
@@ -28,9 +28,8 @@ char	*ft_strcapitalize(char *str)
 		if (str[i] == ' ' || str[i] == '+' || str[i] == '-')
 		{
 			wordbegin = 1;
-		};
+		}
 		i++;
 	}
-
-	return(str);
+	return (str);
 }

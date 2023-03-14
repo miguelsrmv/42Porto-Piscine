@@ -3,86 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:11:31 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/14 11:27:54 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:17:40 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
 
-void swap(char *a, char *b)
+void	swap(char *a, char *b)
 {
-    char temp;
+	char	temp;
 
-    temp = *a;
-    *a = *b;
-    *b = temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
-char* convert_to_hex (char dec_c)
+void	*convert_to_hex(char dec_c, char *hex_c[])
 {
-    char hex_c[2];
-    int remainder;
-    int i;
-    char temp;
+	int		remainder;
+	int		i;
 
-    i = 0;
-    while (dec_c != 0)
-    {
-        remainder = dec_c%16;
-        printf("dec_c = %i, remainder = %i\n", dec_c, remainder);
-        if (remainder < 10)
-        {
-            hex_c[i] = remainder + 48;
-            hex_c[i+1] = '0';
-            printf("%i, %i", hex_c[0], hex_c[1]);
-        }  
-        else
-        {
-            hex_c[i] = remainder + 55;
-            i++;
-            printf("Step %i: dec_c = %i, remainder = %i, hex[%i] = ")
-        }
-        dec_c = dec_c / 16;
-    }
-    swap(&hex_c[0], &hex_c[1]);
-    return(hex_c);    
+	while (dec_c != 0)
+	{
+		if (remainder < 16)
+			hex_c[1] = 48;
+		remainder = dec_c % 16;
+		if (remainder < 10)
+			remainder = remainder + 48;
+		else
+			remainder = remainder + 87;
+		hex_c[i] = remainder;
+		i++;
+		dec_c = dec_c / 16;
+	}
+	swap(&hex_c[0], &hex_c[1]);
 }
 
-void ft_putstr_non_printable (char * str)
+void	ft_putstr_non_printable(char *str)
 {
-    int i;
-    char* unprintable_char[2];
+	int		i;
+	char	*unprintable_char[2];
 
-    i = 0;
-    while (str[i])
-    {
-        if ((str[i] > 31) && str[i] < 127)
-            write(1, &str[i], 1);
-        else
-        {
-            write(1, "\\", 2);
-            printf("\n");
-            unprintable_char[2] = convert_to_hex(str[i]);
-            if (str[i] < 16)
-            {
-                write(1, unprintable_char[0], 1);
-            }
-            else
-            {
-                write(1, unprintable_char, 2);
-            }
-        }    
-        i++;
-    }
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] > 31) && str[i] < 127)
+			write(1, &str[i], 1);
+		else
+		{
+			write(1, "\\", 2);
+			convert_to_hex(str[i], &unprintable_char);
+			write(1, &unprintable_char[0], 1);
+			write(1, &unprintable_char[1], 1);
+		}
+		i++;
+	}
 }
 
 int main (void)
 {
     char a[] = "Ola\nesta bem?";
     char b[] = "\n";
-    ft_putstr_non_printable(b);
-}
+    ft_putstr_non_printable(a);
+}gcc 
