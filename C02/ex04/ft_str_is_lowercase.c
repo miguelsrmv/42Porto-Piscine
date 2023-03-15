@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str_is_lowercase.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:39:58 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/14 18:22:29 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/15 09:04:46 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@ int	ft_str_is_lowercase(char *str)
 {
 	int	i;
 
-	if (str == "")
-		return (1);
 	i = 0;
 	while (str[i])
 	{

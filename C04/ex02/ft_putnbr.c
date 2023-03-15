@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_uppercase.c                              :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 14:42:20 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/15 09:04:58 by mde-sa--         ###   ########.fr       */
+/*   Created: 2023/03/09 12:59:24 by mde-sa--          #+#    #+#             */
+/*   Updated: 2023/03/15 17:26:21 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_uppercase(char *str)
-{
-	int	i;
+#include <unistd.h>
 
-	i = 0;
-	while (str[i])
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putnbr(int nb)
+{
+	if (nb < 0)
 	{
-		if (str[i] < 'A' || str[i] > 'Z')
-			return (0);
-		i++;
+		ft_putchar('-');
+		nb = -nb;
 	}
-	return (1);
+	if (nb >= 10)
+	{
+		ft_putnbr(nb / 10);
+		nb = nb % 10;
+	}
+	if (nb < 10)
+		ft_putchar(nb + 48);
 }

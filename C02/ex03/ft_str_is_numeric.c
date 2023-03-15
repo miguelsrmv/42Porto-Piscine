@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:41 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/14 18:21:43 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/15 09:04:33 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@ int	ft_str_is_numeric(char *str)
 {
 	int	i;
 
-	if (str == "")
-		return (1);
 	i = 0;
 	while (str[i])
 	{

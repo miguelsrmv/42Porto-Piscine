@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_uppercase.c                              :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 14:42:20 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/15 09:04:58 by mde-sa--         ###   ########.fr       */
+/*   Created: 2023/03/15 13:18:09 by mde-sa--          #+#    #+#             */
+/*   Updated: 2023/03/15 13:20:26 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_uppercase(char *str)
-{
-	int	i;
+#include <unistd.h>
 
-	i = 0;
-	while (str[i])
+void	ft_putstr(char *str)
+{
+	while (*str)
 	{
-		if (str[i] < 'A' || str[i] > 'Z')
-			return (0);
-		i++;
+		write(1, str, 1);
+		str++;
 	}
-	return (1);
 }
