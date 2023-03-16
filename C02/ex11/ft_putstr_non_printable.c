@@ -3,54 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:11:31 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/15 14:44:07 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:30:22 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	convert_to_hex(char dec_c, char *hex)
+void	ft_putchar(char c)
 {
-	int		remainder;
-	int		quotient;
-	int		i;
+	write(1, &c, 1);
+}
 
-	quotient = dec_c;
-	i = 1;
-	hex[0] = '0';
-	hex[1] = '0';
-	while (quotient != 0)
-	{
-		remainder = quotient % 16;
-		if (remainder < 10)
-			remainder += 48;
-		else
-			remainder += 87;
-		hex[i] = remainder;
-		i--;
-		quotient = quotient / 16;
-	}
+int	ft_print(char c)
+{
+	if (c > 31 && c < 127)
+		return (0);
+	else
+		return (1);
 }
 
 void	ft_putstr_non_printable(char *str)
 {
 	int		i;
-	char	unprintable_char[2];
+	int		j;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 	{
-		if ((str[i] > 31) && str[i] < 127)
-			write(1, &str[i], 1);
+		if (ft_print(str[i]) == 0)
+			ft_putchar(str[i]);
 		else
 		{
-			write(1, "\\", 1);
-			convert_to_hex(str[i], &unprintable_char[0]);
-			write(1, &unprintable_char[0], 1);
-			write(1, &unprintable_char[1], 1);
+			ft_putchar('\\');
+			if (str[i] < 0)
+				j = str[i] + 256;
+			else
+				j = str[i];
+			ft_putchar("0123456789abcdef"[j / 16]);
+			ft_putchar("0123456789abcdef"[j % 16]);
 		}
 		i++;
 	}
