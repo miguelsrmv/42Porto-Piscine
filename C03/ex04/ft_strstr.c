@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:32:08 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/16 12:54:34 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:08:28 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ char	*ft_strstr(char *str, char *to_find)
 {
 	int		i;
 	int		to_find_size;
-	int		test;
-	
+
 	i = 0;
 	to_find_size = 0;
 	while (to_find[to_find_size])
@@ -38,7 +37,7 @@ char	*ft_strstr(char *str, char *to_find)
 	{
 		if (str[i] == to_find[0])
 		{
-			if (ft_strncmp(&str[i], to_find, to_find_size) == 0);
+			if (ft_strncmp(&str[i], to_find, to_find_size) == 0)
 				return (&str[i]);
 		}
 		i++;

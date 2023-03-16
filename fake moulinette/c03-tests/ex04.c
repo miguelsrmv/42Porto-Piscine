@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex04.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgoncalv <vgoncalv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 17:02:17 by vgoncalv          #+#    #+#             */
-/*   Updated: 2021/04/06 02:41:22 by vgoncalv         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:00:06 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int	main(void)
 	buff = strstr(str, to_find);
 	ft_buff = ft_strstr(str, to_find);
 	if (buff != ft_buff)
-		printf("[2] KO, substrings don't match(expected:%s, got:%s)\n", buff, ft_buff); 
+		printf("[3] KO, substrings don't match(expected:%s, got:%s)\n", buff, ft_buff); 
 	else
-		printf("[2] OK. expected: %s result: %s\n", buff, ft_buff);
+		printf("[3] OK. expected: %s result: %s\n", buff, ft_buff);
 	return (0);
 }
