@@ -51,7 +51,7 @@ int	base_check(char *base)
 	return (1);
 }
 
-void	ft_putnb_base(int nbr, char *base)
+void	ft_putnbr_base(int nbr, char *base)
 {
 	int		numberarray[32];
 	int		index;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:28:04 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/16 16:08:53 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/17 09:56:29 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 		src_i++;
 	}
 	dest[dest_i] = '\0';
-	return (dest_size + src_i);
+	return (dest_size + src_size);
 }

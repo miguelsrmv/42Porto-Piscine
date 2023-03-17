@@ -6,11 +6,9 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:36:18 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/16 18:17:38 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/17 10:07:31 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 int	ft_strlen(char *str)
 {
@@ -20,6 +18,21 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+int	ascii_table_and_whitespace(char *a)
+{
+	if (*a >= 'A' && *a <= 'Z')
+		return (65 - 10);
+	if (*a >= 'a' && *a <= 'z')
+		return (97 - 10);
+	if (*a >= '0' && *a <= '9')
+		return (48);
+	if (*a == '\f' || *a == '\r' || *a == '\t'
+		|| *a == '\v' || *a == '\n' || *a == ' '
+		|| *a == '+' || *a == '-')
+		return (1);
+	return (0);
 }
 
 int	base_check(char *base)
@@ -32,9 +45,7 @@ int	base_check(char *base)
 	i = 0;
 	while (base[i])
 	{
-		if (base[i] == '+' || base[i] == '-' || base[i] == '\f'
-			|| base [i] == '\r' || base[i] == '\t' || base[i] == '\v'
-			|| base[i] == '\n' || base[i] == ' ')
+		if (ascii_table_and_whitespace(&base[i]) == 1)
 			return (0);
 		j = i + 1;
 		while (base[j])
@@ -46,17 +57,6 @@ int	base_check(char *base)
 		i++;
 	}
 	return (1);
-}
-
-int	ascii_table(char *a)
-{
-	if (*a >= 'A' && *a <= 'Z')
-		return (65 - 10);
-	if (*a >= 'a' && *a <= 'z')
-		return (97 - 10);
-	if (*a >= '0' && *a <= '9')
-		return (48);
-	return (0);
 }
 
 int	convert_number(char *numberarray, char *base, int sign)
@@ -75,7 +75,7 @@ int	convert_number(char *numberarray, char *base, int sign)
 	while (i < len_numberarray)
 	{
 		number *= len_base;
-		number += numberarray[i] - ascii_table(&numberarray[i]);
+		number += numberarray[i] - ascii_table_and_whitespace(&numberarray[i]);
 		i++;
 	}
 	number = number * sign;
@@ -92,14 +92,14 @@ int	ft_atoi_base(char *str, char *base)
 
 	starting_index = 0;
 	sign = 1;
-	while (ascii_table(&str[starting_index]) == 0)
+	while (ascii_table_and_whitespace(&str[starting_index]) <= 1)
 	{
 		if (str[starting_index] == '-')
 			sign *= -1;
 		starting_index++;
 	}
 	i = 0;
-	while (ascii_table(&str[starting_index]) != 0)
+	while (ascii_table_and_whitespace(&str[starting_index]) > 1)
 	{
 		number[i] = (str[starting_index]);
 		i++;
