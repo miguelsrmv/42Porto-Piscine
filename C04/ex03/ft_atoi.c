@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:28:15 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/17 11:57:35 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:58:09 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,26 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 
 int	ft_atoi(char *str)
 {
-	int		starting_index;
-	int		ending_index;
+	int		index;
 	int		number;
 	int		sign;
 
 	number = 0;
-	starting_index = 0;
+	index = 0;
 	sign = 1;
-	while (whitespace_or_signs(&str[starting_index]) == 1)
+	while (whitespace_or_signs(&str[index]) == 1)
 	{
-		if (str[starting_index] == '-')
+		if (str[index] == '-')
 			sign *= -1;
-		starting_index++;
+		index++;
 	}
-	ending_index = starting_index;
-	while (str[ending_index] >= '0' && str[ending_index] <= '9')
-		ending_index++;
-	if (sign == -1 && ft_strncmp(&str[starting_index], "2147483648", 10) == 0)
+	if (sign == -1 && ft_strncmp(&str[index], "2147483648", 10) == 0)
 		return (-2147483648);
-	while (starting_index < ending_index)
+	while (str[index] >= '0' && str[index] <= '9')
 	{
 		number *= 10;
-		number += (str[starting_index] - '0');
-		starting_index++;
+		number += (str[index] - '0');
+		index++;
 	}
 	number = number * sign;
 	return (number);
@@ -109,11 +105,11 @@ int		main(void)
 	ft_atoi_unlike_test(str, -6535154);
 	str = " \n \t\f\r \v -++-+++4bgg67asd";
 	ft_atoi_unlike_test(str, 4);
-	str = " \n \t\f\r \v -++-+++-1000234b67asd";
-	ft_atoi_unlike_test(str, -1000234);
-	str = " \n \t\f\r \v -+---3488932hfhb67asd";
-	ft_atoi_unlike_test(str, 3488932);
-	str = " \n \t\f\r \v -++--45721234b67asd";
+	str = " \n \t\f\r \v -++-+++-000asd";
+	ft_atoi_unlike_test(str, 0);
+	str = " \n \t\f\r \v -+---0hfhb67asd";
+	ft_atoi_unlike_test(str, 0);
+	str = " \n \t\f\r \v -++--h45721234b67asd";
 	ft_atoi_unlike_test(str, -45721234);
 	str = " \n \t\f\r \v --+--5651234b67as555d";
 	ft_atoi_unlike_test(str, 5651234);
