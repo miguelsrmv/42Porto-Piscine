@@ -3,49 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 17:36:18 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/17 10:07:31 by mde-sa--         ###   ########.fr       */
+/*   Created: 2023/03/19 15:20:28 by mde-sa--          #+#    #+#             */
+/*   Updated: 2023/03/19 16:34:07 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+void	whitespace_and_sign(int *i, int *sign, char *str)
 {
-	int	i;
+	int		j;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	j = 0;
+	while (str[j] == '\f' || str[j] == '\t' || str[j] == ' '
+		|| str[j] == '\n' || str[j] == '\r' || str[j] == '\v')
+		j++;
+	while (str[j] && (str[j] == '+' || str[j] == '-'))
+	{
+		if (str[j] == '-')
+			*sign = -(*sign);
+		j++;
+	}
+	*i = j;
 }
 
-int	ascii_table_and_whitespace(char *a)
+int	is_number_in_base(char c, char *base, int base_length)
 {
-	if (*a >= 'A' && *a <= 'Z')
-		return (65 - 10);
-	if (*a >= 'a' && *a <= 'z')
-		return (97 - 10);
-	if (*a >= '0' && *a <= '9')
-		return (48);
-	if (*a == '\f' || *a == '\r' || *a == '\t'
-		|| *a == '\v' || *a == '\n' || *a == ' '
-		|| *a == '+' || *a == '-')
+	int		i;
+
+	i = 0;
+	while (base[i] != c && base[i])
+		i++;
+	if (base[i] == c)
 		return (1);
 	return (0);
 }
 
-int	base_check(char *base)
+int	convert_int_from_base(char c, char *base)
 {
-	int	i;
-	int	j;
+	int		i;
 
-	if (ft_strlen(base) < 2)
+	i = 0;
+	while (base[i])
+	{
+		if (base[i] == c)
+		{
+			return (i);
+		}
+		i++;
+	}
+	return (i);
+}
+
+int	check_base(char *base, int base_length)
+{
+	int		i;
+	int		j;
+
+	if (base_length < 2)
 		return (0);
 	i = 0;
 	while (base[i])
 	{
-		if (ascii_table_and_whitespace(&base[i]) == 1)
+		if (base[i] == '-' || base[i] == '+' || base[i] == '\f'
+			|| base[i] == '\t' || base[i] == ' ' || base[i] == '\n'
+			|| base[i] == '\r' || base[i] == '\v')
 			return (0);
 		j = i + 1;
 		while (base[j])
@@ -59,53 +81,27 @@ int	base_check(char *base)
 	return (1);
 }
 
-int	convert_number(char *numberarray, char *base, int sign)
-{
-	int	i;
-	int	number;
-	int	len_numberarray;
-	int	len_base;
-
-	if (base_check(base) == 0)
-		return (0);
-	len_numberarray = ft_strlen(numberarray);
-	len_base = ft_strlen(base);
-	number = 0;
-	i = 0;
-	while (i < len_numberarray)
-	{
-		number *= len_base;
-		number += numberarray[i] - ascii_table_and_whitespace(&numberarray[i]);
-		i++;
-	}
-	number = number * sign;
-	return (number);
-}
-
 int	ft_atoi_base(char *str, char *base)
 {
-	int		starting_index;
-	int		sign;
 	int		i;
-	char	number[10];
 	int		result;
+	int		base_length;
+	int		sign;
 
-	starting_index = 0;
+	base_length = 0;
+	result = 0;
 	sign = 1;
-	while (ascii_table_and_whitespace(&str[starting_index]) <= 1)
+	while (base[base_length])
+		base_length++;
+	if (check_base(base, base_length) == 0)
+		return (0);
+	whitespace_and_sign(&i, &sign, str);
+	while (str[i] && is_number_in_base(str[i], base, base_length))
 	{
-		if (str[starting_index] == '-')
-			sign *= -1;
-		starting_index++;
-	}
-	i = 0;
-	while (ascii_table_and_whitespace(&str[starting_index]) > 1)
-	{
-		number[i] = (str[starting_index]);
+		result *= base_length;
+		result += convert_int_from_base(str[i], base);
 		i++;
-		starting_index++;
 	}
-	number[i] = '\0';
-	result = (convert_number(number, base, sign));
+	result *= sign;
 	return (result);
 }

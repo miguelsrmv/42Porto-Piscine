@@ -37,7 +37,7 @@ int	base_check(char *base)
 	i = 0;
 	while (base[i])
 	{
-		if (base[i] == '+' || base[i] == '-' || base[i] < 32 || base[i] > 126)
+		if (base[i] == '+' || base[i] == '-')
 			return (0);
 		j = i + 1;
 		while (base[j])
@@ -53,22 +53,22 @@ int	base_check(char *base)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int		numberarray[32];
+	char	numberarray[32];
 	int		index;
 	long	nb;
 
 	nb = nbr;
-	if (!base_check(base))
+	if (base_check(base) == 0)
 		return ;
 	if (nb < 0)
 	{
-		ft_putchar('-');
 		nb = -nb;
+		write(1, "-", 1);
 	}
 	index = 0;
 	while (nb != 0)
 	{
-		numberarray[index] = base[nb % ft_strlen(base)];
+		numberarray[index] = base[(nb % ft_strlen(base))];
 		nb = nb / ft_strlen(base);
 		index++;
 	}
