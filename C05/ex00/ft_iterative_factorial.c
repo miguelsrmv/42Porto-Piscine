@@ -6,23 +6,23 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 17:18:05 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/21 12:01:37 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:04:14 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_iterative_factorial(int nb)
 {
-	int	i;
-	int	copy;
+	unsigned int	i;
 
-	copy = nb;
 	i = 1;
-	if (nb <= 0)
-		return (0);
-	while (i < copy)
+	while (nb > 0)
 	{
-		nb *= (copy - i);
-		i++;
+		i = i * nb;
+		nb--;
 	}
-	return (nb);
+	if (nb < 0)
+	{
+		return (0);
+	}
+	return (i);
 }
