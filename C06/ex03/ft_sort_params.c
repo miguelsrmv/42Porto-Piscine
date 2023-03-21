@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:37:38 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/21 15:23:49 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:15:19 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@ int	ft_strcmp(char *s1, char *s2)
 	while ((s1[i] == s2[i]) && s1[i])
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
-void	ft_swap(char *a, char *b)
-{
-	char	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
 }
 
 void	ft_print_params(int size, char *parameters[])
@@ -57,7 +48,7 @@ int	main(int argc, char *argv[])
 	int		size;
 	char	*temp;
 
-	iterate = 0;
+	iterate = 1;
 	size = argc;
 	while (size > 1)
 	{
@@ -71,7 +62,7 @@ int	main(int argc, char *argv[])
 			}
 			iterate++;
 		}
-		iterate = 0;
+		iterate = 1;
 		size--;
 	}
 	ft_print_params(argc - 1, &argv[1]);

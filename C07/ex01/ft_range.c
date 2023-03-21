@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 16:36:37 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/21 18:51:42 by mde-sa--         ###   ########.fr       */
+/*   Created: 2023/03/21 18:25:56 by mde-sa--          #+#    #+#             */
+/*   Updated: 2023/03/21 18:51:44 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-char	*ft_strcpy(char *dest, char *src)
+int	*ft_range(int min, int max)
 {
 	int	i;
+	int	*array;
 
+	if (max < min)
+		return (0);
+	array = malloc((max - min) * 4);
 	i = 0;
-	while (src[i] != '\0')
+	while (min + i != max)
 	{
-		dest[i] = src[i];
+		array[i] = min + i;
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char	*ft_strdup(char *src)
-{
-	int		i;
-	char	*n;
-
-	while (src[i])
-		i++;
-	n = malloc(i);
-	ft_strcpy(n, src);
-	return (n);
 }
