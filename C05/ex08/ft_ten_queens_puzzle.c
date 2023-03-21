@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ten_queens_puzzle.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:02:29 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/19 20:34:44 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:02:14 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
 
 #include <stdio.h>
 
@@ -93,3 +95,4 @@ int main (void)
 {
 	ft_ten_queens_puzzle();
 }
+*/

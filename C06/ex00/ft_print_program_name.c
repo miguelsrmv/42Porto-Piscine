@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
+/*   ft_print_program_name.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 17:18:05 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/21 12:01:37 by mde-sa--         ###   ########.fr       */
+/*   Created: 2023/03/21 14:31:07 by mde-sa--          #+#    #+#             */
+/*   Updated: 2023/03/21 14:35:26 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iterative_factorial(int nb)
+#include <unistd.h>
+
+int	main(int argc, char *argv[])
 {
 	int	i;
-	int	copy;
 
-	copy = nb;
-	i = 1;
-	if (nb <= 0)
-		return (0);
-	while (i < copy)
+	i = argc - argc;
+	while (argv[0][i])
 	{
-		nb *= (copy - i);
+		write(1, &argv[0][i], 1);
 		i++;
 	}
-	return (nb);
+	write(1, "\n", 1);
 }

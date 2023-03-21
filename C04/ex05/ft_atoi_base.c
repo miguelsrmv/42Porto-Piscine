@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:20:28 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/20 11:23:08 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/21 10:10:09 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	whitespace_and_sign(int *i, int *sign, char *str)
 	*i = j;
 }
 
-int	is_number_in_base(char c, char *base, int base_length)
+int	is_number_in_base(char c, char *base)
 {
 	int		i;
 
@@ -96,7 +96,7 @@ int	ft_atoi_base(char *str, char *base)
 	if (check_base(base, base_length) == 0)
 		return (0);
 	whitespace_and_sign(&i, &sign, str);
-	while (str[i] && is_number_in_base(str[i], base, base_length))
+	while (str[i] && is_number_in_base(str[i], base))
 	{
 		result *= base_length;
 		result += convert_int_from_base(str[i], base);

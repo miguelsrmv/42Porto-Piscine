@@ -53,11 +53,11 @@ int	base_check(char *base)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	char	numberarray[32];
-	int		index;
 	long	nb;
+	int		length;
 
 	nb = nbr;
+	length = ft_strlen(base);
 	if (base_check(base) == 0)
 		return ;
 	if (nb < 0)
@@ -65,16 +65,11 @@ void	ft_putnbr_base(int nbr, char *base)
 		nb = -nb;
 		write(1, "-", 1);
 	}
-	index = 0;
-	while (nb != 0)
+	if (nb < length)
+		ft_putchar(base[nb]);
+	if (nb >= length)
 	{
-		numberarray[index] = base[(nb % ft_strlen(base))];
-		nb = nb / ft_strlen(base);
-		index++;
-	}
-	while (index >= 0)
-	{
-		ft_putchar(numberarray[index - 1]);
-		index--;
+		ft_putnbr_base((nb / length), base);
+		ft_putnbr_base((nb % length), base);
 	}
 }
