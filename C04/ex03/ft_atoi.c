@@ -3,42 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:28:15 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/21 18:09:16 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/22 08:42:55 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	whitespace_or_signs(char *a)
-{
-	if (*a == ' ' || *a == '\f' || *a == '\n' || *a == '\r' || *a == '\t'
-		|| *a == '\v' || *a == '+' || *a == '-')
-		return (1);
-	return (0);
-}
-
 int	ft_atoi(char *str)
 {
-	int		index;
-	int		number;
-	int		sign;
+	int	sign;
+	int	nb;
 
-	number = 0;
-	index = 0;
-	sign = 1;
-	while (whitespace_or_signs(&str[index]) == 1)
+	sign = 0;
+	nb = 0;
+	while ((*str >= 9 && *str <= 13) || *str == 32
+		|| *str == '-' || *str == '+')
 	{
-		if (str[index] == '-')
+		if (*str == '-')
 			sign *= -1;
-		index++;
+		str++;
 	}
-	while (str[index] >= '0' && str[index] <= '9')
+	while (*str >= '0' && *str <= '9')
 	{
-		number *= 10;
-		number += (str[index] - '0');
-		index++;
+		nb = nb * 10;
+		nb = nb + *str - 48;
+		str++;
 	}
-	number = number * sign;
-	return (number);
+	return (nb * sign);
 }
