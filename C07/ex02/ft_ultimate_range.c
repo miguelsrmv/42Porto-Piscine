@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:43:56 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/22 08:55:54 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:53:14 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdlib.h>
 
 #include <stdlib.h>
 
@@ -28,6 +26,7 @@ int	*ft_range(int min, int max)
 		array[i] = min + i;
 		i++;
 	}
+	return(array);
 }
 
 int	ft_ultimate_range(int **range, int min, int max)

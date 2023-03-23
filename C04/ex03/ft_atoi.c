@@ -6,29 +6,34 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:28:15 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/23 10:14:16 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:56:59 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 int	ft_atoi(char *str)
 {
 	int	sign;
-	int	nb;
+	int	result;
 
-	sign = 1;
-	nb = 0;
-	while ((*str >= 9 && *str <= 13) || *str == 32
-		|| *str == '-' || *str == '+')
+	sign = 0;
+	result = 0;
+	while ((*str >= 9 && *str <= 13) || *str == 32)
+		++str;
+	while (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
-			sign *= -1;
-		str++;
+			sign++;
+		++str;
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		nb = nb * 10;
-		nb = nb + *str - 48;
-		str++;
+		result = result * 10;
+		result = result + *str - 48;
+		++str;
 	}
-	return (nb * sign);
+	if ((sign % 2) == 0)
+		return (result);
+	return (-result);
 }
