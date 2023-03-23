@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:37:38 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/23 13:58:31 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:20:57 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_print_params(int size, char *parameters[])
 {
 	int	i;
 	int	j;
-	int	w;
 
 	i = 0;
 	j = 0;

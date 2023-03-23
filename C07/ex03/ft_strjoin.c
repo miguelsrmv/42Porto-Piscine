@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:55:51 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/23 12:39:04 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:35:38 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,18 @@ int	ft_strlen(char *str)
 
 	i = 0;
 	while (str[i])
+		i++;
+	return (i);
+}
+
+int	ft_strlen_inception(int *strs_b_size, char **strs, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
 	{
+		strs_b_size += ft_strlen(strs[i]);
 		i++;
 	}
 	return (i);
@@ -26,24 +37,29 @@ int	ft_strlen(char *str)
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	char	*nstr;
+	char	*new_str;
+	int		strs_b_size;
 	int		i;
-	int		j;
 	int		h;
+	int		j;
 
-	nstr = malloc (ft_strlen(*strs) * size + ft_strlen(sep) * (size - 1) + 1);
-	i = 0;
+	strs_b_size = ft_strlen_inception(&strs_b_size, strs, size);
+	new_str = (char *)malloc(strs_b_size + ft_strlen(sep) * (size - 1) + 1);
+	if (!new_str)
+		return (0);
+	if (size == 0)
+		return (new_str);
+	i = -1;
 	h = 0;
-	while (i < size)
+	while (++i < size)
 	{
 		j = 0;
 		while (strs[i][j])
-			nstr[h++] = strs[i][j++];
+			new_str[h++] = strs[i][j++];
 		j = 0;
 		while (sep[j] && i < size - 1)
-			nstr[h++] = sep[j++];
-		i++;
+			new_str[h++] = sep[j++];
 	}
-	nstr[h] = '\0';
-	return (nstr);
+	new_str[h] = '\0';
+	return (new_str);
 }
