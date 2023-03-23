@@ -33,7 +33,7 @@ char	*ft_strdup(char *src)
 
 	while (src[i])
 		i++;
-	n = malloc(i);
+	n = malloc(i + 1);
 	ft_strcpy(n, src);
 	return (n);
 }

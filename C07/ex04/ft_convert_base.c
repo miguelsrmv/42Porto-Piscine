@@ -3,23 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_convert_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 10:23:03 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/22 11:40:35 by mde-sa--         ###   ########.fr       */
+/*   Created: 2023/03/19 15:20:28 by mde-sa--          #+#    #+#             */
+/*   Updated: 2023/03/23 11:56:49 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
 int	check_base(char *base)
 {
 	int		i;
 	int		j;
-	int		base_length;
 
-	base_length = 0;
-	while (base[base_length])
-		base_length++;
-	if (base_length < 2)
+	if (ft_strlen(base) < 2)
 		return (0);
 	i = 0;
 	while (base[i])
@@ -31,46 +39,37 @@ int	check_base(char *base)
 		j = i + 1;
 		while (base[j])
 		{
-			if (base[i] == base[j++])
+			if (base[i] == base[j])
 				return (0);
+			j++;
 		}
 		i++;
 	}
-	return (base_length);
+	return (1);
 }
 
-void	whitespace_and_sign(char *nbr, int *i, char *result, int *array_index)
+void	whitespace_and_sign(int *i, int *sign, char *str)
 {
-	int		number_index;
-	int		sign;
+	int		j;
 
-	number_index = 0;
-	sign = 1;
-	while (nbr[number_index] == '\f' || nbr[number_index] == '\t'
-		|| nbr[number_index] == ' ' || nbr[number_index] == '\n'
-		|| nbr[number_index] == '\r' || nbr[number_index] == '\v')
+	j = 0;
+	while (str[j] == '\f' || str[j] == '\t' || str[j] == ' '
+		|| str[j] == '\n' || str[j] == '\r' || str[j] == '\v')
 		j++;
-	while (nbr[number_index] && (nbr[number_index] == '+'
-			|| nbr[number_index] == '-'))
+	while (str[j] && (str[j] == '+' || str[j] == '-'))
 	{
-		if (nbr[number_index] == '-')
+		if (str[j] == '-')
 			*sign = -(*sign);
 		j++;
 	}
-	*i = number_index;
-	if (sign == -1)
-	{
-		result[0] = '-';
-		*array_index = 1;
-	}
-	else
-		*array_index = 0;
+	*i = j;
 }
 
-int	is_char_in_base(char c, char *base)
+int	is_number_in_base(char c, char *base)
 {
-	char		i;
+	int		i;
 
+	i = 0;
 	while (base[i] != c && base[i])
 		i++;
 	if (base[i] == c)
@@ -78,44 +77,101 @@ int	is_char_in_base(char c, char *base)
 	return (0);
 }
 
-void	convert_from_to_base(char *c, char *base_from, char *base_to, int base_length)
+int	convert_int_from_base(char c, char *base)
 {
 	int		i;
-	char	*number;
-	int		decimal_value;
 
-	decimal_value = 0;
-	
 	i = 0;
-	while (base_from[i] =! c)
+	while (base[i])
+	{
+		if (base[i] == c)
+		{
+			return (i);
+		}
 		i++;
-	while (i > 0)
-		if (i < base_length)
-			
-		else
-		
-		
+	}
+	return (i);
 }
 
-char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
+int	ft_atoi_to_decimal(char *str, char *base)
 {
-	int		nbr_index;
-	int		array_index;
-	char	*result;
+	int		i;
+	int		result;
 	int		base_length;
+	int		sign;
 
-	base_length = check_base(*base_from);
-	if (base_length == 0)
-		return (0);
-	whitespace_and_sign(nbr, &nbr_index, result, &array_index);
-	while (nbr[nbr_index] && is_char_in_base(nbr[nbr_index], base_from))
+	base_length = 0;
+	result = 0;
+	sign = 1;
+	base_length = ft_strlen(base);
+	whitespace_and_sign(&i, &sign, str);
+	while (str[i] && is_number_in_base(str[i], base))
 	{
-		
 		result *= base_length;
-		result += convert_int_from_base(str[nbr_index], base);
-		nbr_index++;
+		result += convert_int_from_base(str[i], base);
+		i++;
 	}
-	
-
+	result *= sign;
 	return (result);
+}
+
+void ft_int_to_array_as_base(int nbr, char* base, char* numberarray, int *index)
+{
+	int		length;
+	long	n;
+
+	length = ft_strlen(base);
+	n = nbr;
+	if (n < 0)
+	{
+		n = n * (-1);
+		numberarray[0] = '-';
+		++*index;
+	}
+	if (n < length)
+	{
+		numberarray[*index] = (base[n]);
+		++*index;
+	}
+	if (n >= length)
+	{
+		ft_int_to_array_as_base((n / length), base, numberarray, index);
+		ft_int_to_array_as_base((n % length), base, numberarray, index);
+	}
+}
+
+
+char *ft_convert_base(char *nbr, char *base_from, char *base_to)
+{
+	int		basecheck;
+	int		decimal_num;
+	char	*numberarray;
+	int		index;
+
+	basecheck = check_base(base_from);
+	if (basecheck == 0)
+		return (0);
+	decimal_num = ft_atoi_to_decimal(nbr, base_from);
+	index = 0;
+	numberarray = malloc(32);
+	ft_int_to_array_as_base(decimal_num, base_to, numberarray, &index);
+	return (numberarray);
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int		main(void)
+{
+	char nbr[] = "-2147483648";
+	char base_to[] = "0";
+	char base_from[] = "0123456789";
+	char *res;
+
+	res = ft_convert_base(nbr, base_from, base_to);
+	if (res == NULL)
+		return (1);
+	printf("%s\n", res);
+	free(res);
+	return (0);
 }

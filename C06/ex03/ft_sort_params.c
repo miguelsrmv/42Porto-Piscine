@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_params.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:37:38 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/22 10:21:44 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/23 10:02:31 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,26 @@ void	ft_print_params(int size, char *parameters[])
 {
 	int	i;
 	int	j;
+	int	w;
 
 	i = 0;
 	j = 0;
+	w = 0;
 	while (i < size)
 	{
 		while (parameters[i][j])
 		{
 			write(1, &parameters[i][j], 1);
 			j++;
+			w++;
 		}
 		j = 0;
 		i++;
-		write(1, "\n", 1);
+		if (w > 0)
+		{
+			write(1, "\n", 1);
+			w = 0;
+		}
 	}
 }
 
