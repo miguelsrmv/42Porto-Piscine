@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   caralho.c                                          :+:      :+:    :+:   */
+/*   OCARALHODOXERCICIO.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/03 09:55:04 by salassam          #+#    #+#             */
-/*   Updated: 2023/03/23 17:54:21 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/25 10:35:32 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		main(void)
 	char	*sep;
 	char	**strs;
 
-	str = "WfrONjnyoiSQ5GYKxJ6NSlqrUtPkklcoKR f";
+	str = "yWfrONjnyyoiSQ5GYKxJ6NSlqrUtPkklcoKR fyy";
 	sep = "ySzX";
 	strs = ft_split(str, sep);
 	str_n = 0;
@@ -116,6 +116,7 @@ int		main(void)
 		printf("[%d]: %s\n", str_n, strs[str_n]);
 		str_n++;
 	}
-	free(strs);
+	printf("Array size: %i\n", (str_n + 1));
+	//free(strs);
 	return (0);
 }

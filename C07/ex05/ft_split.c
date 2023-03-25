@@ -6,21 +6,12 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 18:03:04 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/24 13:04:54 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/25 11:21:33 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+#include <stdio.h>
 
 int is_in_charset(char c, char *charset)
 {
@@ -29,65 +20,95 @@ int is_in_charset(char c, char *charset)
     i = 0;
     while (charset[i])
         {
-            if (charset[i] == c)
+            if (c == charset[i])
                 return (1);
 			i++;
         }
     return (0);
 }
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+int wordcount(char *str, char *charset)
 {
-	unsigned int	i;
+	int wordcount;
+	int wordbegin;
+	int i;
 
+	wordbegin = 1;
+	wordcount = 0;
 	i = 0;
-	while (src[i] != '\0' && i < n)
+	while (str[i])
 	{
-		dest[i] = src[i];
+		if (is_in_charset(str[i], charset) == 1)
+			wordbegin = 1;
+		if (is_in_charset(str[i], charset) == 0 && wordbegin == 1)
+		{
+			wordbegin = 0;
+			wordcount++;
+		}
 		i++;
 	}
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
+	return (wordcount);
 }
 
-char	*ft_strdup(char *src, int i)
+char	*ft_strdup_ncpy(char *src, int length)
 {
-	char *n;
+	char 	*copy;
+	int		i;
 
-	n = (char *)malloc(i + 1);
-	ft_strncpy(n, src, i);
-	return (n);
+	copy = (char *)malloc(length + 1);
+	i = 0;
+	while (src[i] != '\0' && i < length)
+	{
+		copy[i] = src[i];
+		i++;
+	}
+	while (i < length)
+	{
+		copy[i] = '\0';
+		i++;
+	}
+	
+	printf("N is '%s'.\n", copy);
+	return (copy);
+}
+
+char *populate_array(char** array, char *str, char *charset)
+{
+	int beg_ind;
+	int end_ind;
+	int arr_ind;
+	int wordbegin;
+
+	arr_ind = 0;
+	end_ind = 0;
+	wordbegin = 1;
+	while (str[end_ind])
+	{
+		beg_ind = end_ind;
+		if (is_in_charset(str[end_ind], charset) == 1)
+		{
+			array[arr_ind] = ft_strdup_ncpy(str[beg_ind], end_ind - beg_ind + 1);
+			arr_ind++;
+			wordbegin = 1;
+		}
+		if (is_in_charset(str[end_ind], charset) == 0 && wordbegin == 1)
+			wordbegin = 0;
+		end_ind++;
+	}
 }
 
 char **ft_split(char *str, char *charset)
 {
-    int		i;
-    int		j;
-	int 	h;
-	char	*substring;
-	char	*array[10000];
+	int array_size;
+	char **array;
 
-    i = 0;
-	j = i;
-	h = 0;
-    while (str[i])
-    {
-        if (is_in_charset(str[i], charset) == 1 || str[i] == '\0')
-		{
-			substring = ft_strdup(&str[j], i - j);
-			array[h] = substring;
-			j = ++i;
-			h++;
-		}
-        i++;
-	}
-	return (array);
+	array_size = wordcount(str, charset) + 1;
+	array = malloc(array_size * sizeof(char *));
+	populate_array(array, str, charset);
+	
 }
 
+////////////////////////////////
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -99,9 +120,11 @@ int		main(void)
 	char	*sep;
 	char	**strs;
 
-	str = "WfrONjnyoiSQ5GYKxJ6NSlqrUtPkklcoKR f";
+	str = "yWfrONjnyyoiSQ5GYKxJ6NSlqrUtPkklcoKR fyy";
+
 	sep = "ySzX";
 	strs = ft_split(str, sep);
+	/*
 	str_n = 0;
 	while (strs[str_n] != 0)
 	{
@@ -110,4 +133,5 @@ int		main(void)
 	}
 	free(strs);
 	return (0);
+	*/
 }
