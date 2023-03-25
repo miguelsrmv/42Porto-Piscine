@@ -1,1 +1,6 @@
-#define ABS(n) ((n > 0) ? n : -n )
+int	ABS(int n)
+{
+    if (n >= 0)
+        return (n);
+    return (-n);
+}
