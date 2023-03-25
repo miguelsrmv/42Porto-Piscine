@@ -6,93 +6,99 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:02:29 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/21 12:02:14 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/25 19:45:52 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
+#include <unistd.h>
 
-#include <stdio.h>
+//Array[collumn] = linha que ocupa em dada coluna
 
-void	print_array(int array[10][10])
+int position_valid (int collumn, int *array)
 {
-	int	a;
-	int	b;
+	int pos_check;
 
-	a = 0;
-	b = 0;
-	printf("\n");
-	printf("    0 1 2 3 4 5 6 7 8 9\n");
-	printf("    _ _ _ _ _ _ _ _ _ _ \n");
-	while (a < 10)
+	pos_check = 0;
+	while (pos_check < collumn)															// Posicoes horizontais
 	{
-		printf("%i | ", a);
-		while (b < 10)
+		if (array[collumn] == array[pos_check])
+			return (0);
+		pos_check++;
+	}
+	pos_check = 1;
+	while (pos_check <= collumn && collumn - pos_check >= 0)							// Posicoes diagonais para cima
+	{
+		if (array[collumn - pos_check] == array[collumn] - pos_check)
+			return (0);
+		pos_check++;
+	}
+	pos_check = 1;
+	while (pos_check <= collumn && collumn + pos_check < 10)							// Posicoes diagonais para baixo
+	{
+		if (array[collumn - pos_check] == array[collumn] + pos_check)
+			return (0);
+		pos_check++;
+	}
+	return (1);
+}
+
+void success (int *array, int *counter)
+{
+	int i;
+
+	i = 0;
+	while (array[i])
+	{
+		write(1, &array[i], 1);
+		write(1, "\n", 1);
+		i++;
+	}
+	(*counter)++;
+	return ;
+}
+
+int	put_queen(int collumn, int *array, int *counter)
+{
+	// Caso base >> Ultima solucao... desnecessario ???
+	if (array[0] == 10)
+		return (0);
+	// Caso recursivo
+	while (array[collumn] < 10)
+	{
+		while (position_valid(collumn, array) == 0)
 		{
-			printf("%i ", array[a][b]);
-			b++;
+			if (array[collumn] == 9) // Se na ultima linha
+				return (0);
+			else // Verifica que 
+				array[collumn]++;
 		}
-		b = 0;
-		printf("\n");
-		a++;
-	}
-	printf("\n");
-}
-
-int	clash_check(int array[10][10], int x, int y)
-{
-	int	i;
-
-	i = 0;
-	while (i < 10)
-	{
-		if (array[i][y] == 1)
-			return (1);
-		i++;
-	}
-	i = 0;
-	while (i < 10)
-	{
-		if (array[x][y] == 1)
-			return (1);
-		i++;
-	}
-	i = 0;
-	while (i < 10)
-	{
-		if (array[x + i][y + i] == 1 || array[x + i][y - i] == 1
-			|| array[x - i][y + 1] == 1 || array[x - 1][y + 1] == 1)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-void	populate_array(int x, int y, int array[10][10])
-{
-	while (x < 10)
-	{
-		while (y < 10)
+		if (collumn == 10)
 		{
-			if (clash_check(array, x, y) == 0)
-				array[x][y] == 1;
-			else
-				y++;
+			success(array, counter);
+			return (1);
 		}
-		x++;
+		else
+		{
+			put_queen(collumn + 1, array, counter);
+			array[collumn]++; // ?????
+		}
 	}
 }
+
 
 int	ft_ten_queens_puzzle(void)
 {
-	int	array[10][10];
+	// 
+	int array[10];
+	int counter;
 
-	populate_array(1, 1, array);
-	print_array(array);
+	counter = 0;
+	array[0] = 0;
+	put_queen(0, array, &counter);
+	return (counter);
 }
 
 int main (void)
 {
 	ft_ten_queens_puzzle();
 }
-*/
