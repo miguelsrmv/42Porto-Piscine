@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:02:29 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/25 19:45:52 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/25 20:28:34 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,17 @@ int	put_queen(int collumn, int *array, int *counter)
 			else // Verifica que 
 				array[collumn]++;
 		}
-		if (collumn == 10)
+		if (collumn == 9)
 		{
 			success(array, counter);
 			return (1);
 		}
 		else
 		{
+			array[collumn + 1] = 0;
 			put_queen(collumn + 1, array, counter);
+			if (array[collumn] == 9)
+				return (0);
 			array[collumn]++; // ?????
 		}
 	}
@@ -88,12 +91,11 @@ int	put_queen(int collumn, int *array, int *counter)
 
 int	ft_ten_queens_puzzle(void)
 {
-	// 
-	int array[10];
+	int array[10] = {0, 2, 5, 7, 9, 4, 8, 1, 0, 0};
 	int counter;
-
+	
+//	array[0] = 0;
 	counter = 0;
-	array[0] = 0;
 	put_queen(0, array, &counter);
 	return (counter);
 }
