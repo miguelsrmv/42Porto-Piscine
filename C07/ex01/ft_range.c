@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:25:56 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/23 16:56:00 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/25 12:26:31 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	*ft_range(int min, int max)
 
 	if (max < min)
 		return (0);
-	array = (int *)malloc((max - min) * 4);
+	array = (int *)malloc((max - min) * sizeof(int));
 	i = 0;
 	while (min + i != max)
 	{
