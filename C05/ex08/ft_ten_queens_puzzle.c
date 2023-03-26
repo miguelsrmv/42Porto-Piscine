@@ -113,9 +113,8 @@ int	ft_ten_queens_puzzle(void)
 	return (counter);
 }
 
-/*
+
 int main (void)
 {
 	ft_ten_queens_puzzle();
 }
-*/
