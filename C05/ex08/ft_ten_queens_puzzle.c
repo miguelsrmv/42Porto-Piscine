@@ -5,16 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 18:02:29 by mde-sa--          #+#    #+#             */
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2023/03/27 09:10:30 by mde-sa--         ###   ########.fr       */
-=======
-/*   Updated: 2023/03/26 02:27:52 by mde-sa--         ###   ########.fr       */
->>>>>>> 4b43a1749b8012d95b847b62ab7b2c1a50228b56
-=======
-/*   Updated: 2023/03/26 02:27:52 by mde-sa--         ###   ########.fr       */
->>>>>>> 4b43a1749b8012d95b847b62ab7b2c1a50228b56
+/*   Created: 2023/03/27 19:16:48 by mde-sa--          #+#    #+#             */
+/*   Updated: 2023/03/27 23:14:50 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +112,3 @@ int	ft_ten_queens_puzzle(void)
 	put_queen(0, array, &counter);
 	return (counter);
 }
-
-
-int main (void)
-{
-	ft_ten_queens_puzzle();
-}
-

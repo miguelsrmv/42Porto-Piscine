@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 18:03:04 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/27 15:45:13 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/27 23:46:41 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,45 +69,46 @@ char	*ft_strdup_ncpy(char *src, int length)
 	return (copy);
 }
 
-void	populate_array(char **array, char *str, char *charset, int arr_ind)
+void	populate_array(char **array, char *str, char *charset, int end_ind)
 {
 	int	beg_ind;
-	int	end_ind;
+	int	arr_ind;
 	int	wordbegin;
 
-	end_ind = 0;
 	wordbegin = 1;
-	while (is_in_charset(str[end_ind], charset) == 1)
-			end_ind++;
+	arr_ind = 0;
 	beg_ind = end_ind;
 	while (str[end_ind])
 	{
 		if (is_in_charset(str[end_ind], charset) == 1 && wordbegin == 0)
 		{
-			array[arr_ind] = ft_strdup_ncpy(&str[beg_ind], end_ind - beg_ind);
-			arr_ind++;
+			array[arr_ind++] = ft_strdup_ncpy(&str[beg_ind], end_ind - beg_ind);
 			while (is_in_charset(str[end_ind], charset) == 1)
 				end_ind++;
 			wordbegin = 1;
 			beg_ind = end_ind;
 		}
 		else
+		{
 			wordbegin = 0;
-		end_ind++;
+			end_ind++;
+		}
 	}
 	array[arr_ind] = ft_strdup_ncpy(&str[beg_ind], end_ind - beg_ind);
 }
 
 char	**ft_split(char *str, char *charset)
 {
+	int		end_ind;
 	int		array_size;
 	char	**array;
-	int		arr_ind;
 
-	arr_ind = 0;
+	end_ind = 0;
+	while (is_in_charset(str[end_ind], charset) == 1)
+		end_ind++;
 	array_size = wordcount(str, charset) + 1;
 	array = malloc(array_size * sizeof(char *));
-	populate_array(array, str, charset, arr_ind);
+	populate_array(array, str, charset, end_ind);
 	array[array_size - 1] = NULL;
 	return (array);
 }
