@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:36:37 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/23 16:53:39 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:54:45 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@ char	*ft_strdup(char *src)
 	int		i;
 	char	*n;
 
+	i = 0;
 	while (src[i])
 		i++;
-	n = (char *)malloc(i + 1);
+	n = malloc(i * sizeof(char) + 1);
+	if (!n)
+		return (NULL);
 	ft_strcpy(n, src);
 	return (n);
 }

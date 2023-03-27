@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:55:51 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/23 17:35:38 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/27 10:16:31 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_strlen_inception(int *strs_b_size, char **strs, int size)
+int	ft_strlen_inception(int *overall_size, char **strs, int size)
 {
 	int	i;
 
 	i = 0;
 	while (i < size)
 	{
-		strs_b_size += ft_strlen(strs[i]);
+		overall_size += ft_strlen(strs[i]);
 		i++;
 	}
 	return (i);
@@ -38,13 +38,13 @@ int	ft_strlen_inception(int *strs_b_size, char **strs, int size)
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	char	*new_str;
-	int		strs_b_size;
+	int		overall_size;
 	int		i;
 	int		h;
 	int		j;
 
-	strs_b_size = ft_strlen_inception(&strs_b_size, strs, size);
-	new_str = (char *)malloc(strs_b_size + ft_strlen(sep) * (size - 1) + 1);
+	overall_size = ft_strlen_inception(&overall_size, strs, size);
+	new_str = (char *)malloc(overall_size + ft_strlen(sep) * (size - 1) + 1);
 	if (!new_str)
 		return (0);
 	if (size == 0)

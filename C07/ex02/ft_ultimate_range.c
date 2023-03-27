@@ -6,41 +6,28 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 08:43:56 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/25 12:27:21 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/27 11:55:07 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
-
-int	*ft_range(int min, int max, int *array)
-{
-	int	i;
-
-	if (max < min)
-		return (0);
-	i = 0;
-	while (min + i != max)
-	{
-		array[i] = min + i;
-		i++;
-	}
-	return (array);
-}
 
 int	ft_ultimate_range(int **range, int min, int max)
 {
-	int	*array;
+	int	i;
+	int	*buffer;
 
-	if (min > max)
-	{
-		array = NULL;
+	if (min >= max)
 		return (0);
-	}
-	array = (int *)malloc((max - min) * 4);
-	if (!array)
+	buffer = malloc((max - min) * sizeof(int));
+	if (!buffer)
 		return (-1);
-	*range = ft_range(min, max, array);
-	printf("Max: %i, Min: %i\n", max, min);
+	i = 0;
+	*range = buffer;
+	while (min + i != max)
+	{
+		buffer[i] = min + i;
+		i++;
+	}
 	return (max - min);
 }
