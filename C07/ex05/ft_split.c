@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 18:03:04 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/27 11:50:30 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:45:13 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	populate_array(char **array, char *str, char *charset, int arr_ind)
 			wordbegin = 0;
 		end_ind++;
 	}
+	array[arr_ind] = ft_strdup_ncpy(&str[beg_ind], end_ind - beg_ind);
 }
 
 char	**ft_split(char *str, char *charset)
@@ -107,6 +108,6 @@ char	**ft_split(char *str, char *charset)
 	array_size = wordcount(str, charset) + 1;
 	array = malloc(array_size * sizeof(char *));
 	populate_array(array, str, charset, arr_ind);
-	array[array_size - 1] = '\0';
+	array[array_size - 1] = NULL;
 	return (array);
 }

@@ -1,6 +1,6 @@
-int	ABS(int n)
-{
-    if (n >= 0)
-        return (n);
-    return (-n);
-}
+#ifndef ABS_H
+# define ABS_H
+
+# define ABS(n)((n < 0) ? -n : n)
+
+#endif

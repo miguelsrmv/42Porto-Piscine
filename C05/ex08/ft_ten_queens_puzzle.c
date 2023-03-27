@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:02:29 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/25 22:52:57 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/27 09:10:30 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ int	ft_ten_queens_puzzle(void)
 	return (counter);
 }
 
-/*
+
 int main (void)
 {
 	ft_ten_queens_puzzle();
 }
-*/
+

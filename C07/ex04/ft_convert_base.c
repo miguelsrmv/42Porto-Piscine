@@ -6,7 +6,7 @@
 /*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:20:28 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/27 11:54:33 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:34:21 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,12 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	if (check_base(base_from) == 0 || check_base(base_to) == 0)
 		return (0);
 	decimal_num = ft_atoi_to_decimal(nbr, base_from);
-	if (!decimal_num)
-		return (NULL);
-	index = 0;
 	numberarray = malloc(1 + 32 * sizeof(char) + 1);
 	if (!numberarray)
 		return (0);
+	index = 0;
 	ft_int_to_array_as_base(decimal_num, base_to, numberarray, &index);
 	numberarray[index] = '\0';
 	return (numberarray);
 }
+ 
