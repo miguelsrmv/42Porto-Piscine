@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ten_queens_puzzle.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mde-sa-- <mde-sa--@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:16:48 by mde-sa--          #+#    #+#             */
-/*   Updated: 2023/03/27 23:14:50 by mde-sa--         ###   ########.fr       */
+/*   Updated: 2023/03/28 10:29:01 by mde-sa--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	success(int *array, int *counter)
 		write (1, &c, 1);
 		i++;
 	}
-	write (1, "\n", 1);
 	(*counter)++;
+	write (1, "\n", 1);
 	return ;
 }
 
@@ -64,6 +64,7 @@ int	end_of_collumn(int collumn, int *array)
 		array[collumn] = 0;
 		return (0);
 	}
+	array[collumn]++;
 	return (1);
 }
 
@@ -75,14 +76,13 @@ int	put_queen(int collumn, int *array, int *counter)
 		{
 			if (end_of_collumn(collumn, array) == 0)
 				return (0);
-			array[collumn]++;
 		}
 		if (collumn == 9)
 		{
 			success(array, counter);
 			if (end_of_collumn(collumn, array) == 0)
 				return (0);
-			array[collumn]++;
+			put_queen(collumn, array, counter);
 			return (0);
 		}
 		else
@@ -90,7 +90,6 @@ int	put_queen(int collumn, int *array, int *counter)
 			put_queen(collumn + 1, array, counter);
 			if (end_of_collumn(collumn, array) == 0)
 				return (0);
-			array[collumn]++;
 		}
 	}
 	return (1);
