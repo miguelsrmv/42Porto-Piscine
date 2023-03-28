@@ -6,7 +6,7 @@
 #    By: mde-sa-- <mde-sa--@student.42porto.com     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/28 12:33:20 by mde-sa--          #+#    #+#              #
-#    Updated: 2023/03/28 17:14:07 by mde-sa--         ###   ########.fr        #
+#    Updated: 2023/03/28 18:04:41 by mde-sa--         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ SRCS = srcs/ft_putchar.c \
 	   srcs/ft_strlen.c \
 	   srcs/ft_strcmp.c
 
-HEADER = ./includes/ft.h
+HEADER = ./includes/
 
-OBJS = ${SRCS:.c = .o}
+OBJS = ft_putchar.o ft_swap.o ft_putstr.o ft_strlen.o ft_strcmp.o
 
 CC = cc
 
@@ -28,17 +28,16 @@ RM = rm -f
 
 CFlags = -Wall -Wextra -Werror
 
-all: 
-	$(NAME)
+all: $(NAME)
 
 $(NAME):
-	$(CC) -o $(SRCS) $(HEADER)
+	$(CC) $(CFLAGS) -I $(HEADER) -c $(SRCS) 
 	ar -rcs $(NAME) $(OBJS)
 
 clean:
 	rm -rf $(OBJS)
 
-fcleghjghjghan:
+fclean:
 	rm -rf $(NAME)
 
 re:
