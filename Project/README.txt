@@ -1,1 +1,0 @@
-type in ./frozen_computers followed by a .txt file with a copy of the slack conversation to get a sorted list of the frozen computers!
