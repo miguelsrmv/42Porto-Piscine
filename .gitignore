@@ -3,4 +3,5 @@
 .vscode
 .motd_shown
 .sudo_as_admin_successful
-Token.txt
+.gitignore
+Token
