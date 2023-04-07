@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .bash_history
 .git
 .vscode
@@ -5,3 +6,7 @@
 .sudo_as_admin_successful
 .gitignore
 Token
+=======
+.oken.txt
+fake-moulinette
+>>>>>>> parent of 75885cb (End of Piscine)
